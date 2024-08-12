@@ -1,0 +1,16 @@
+---
+- name: Create user and transfer folder to all workers
+  hosts: workers
+  become: yes
+  tasks:
+    - name: Set current working directory
+      set_fact:
+        current_dir: "{{ lookup('env', 'PWD') }}/blockchain-setup/nfs-share"
+
+    - name: Copy folder to remote servers
+      copy:
+        src: "{{ current_dir }}"
+        dest: /home/k8suser/
+        owner: k8suser
+        group: k8suser
+        mode: '0755'

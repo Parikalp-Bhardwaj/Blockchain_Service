@@ -1,0 +1,119 @@
+- hosts: masters
+  remote_user: k8suser
+  become: yes
+  gather_facts: yes
+  connection: ssh
+
+  tasks:
+    - name: Reset any existing Kubernetes setup
+      shell: |
+        kubeadm reset -f
+        rm -rf $HOME/.kube
+      ignore_errors: yes
+
+    - name: Initialize Kubernetes master
+      shell: kubeadm init --pod-network-cidr=10.10.0.0/16 --control-plane-endpoint={{ ansible_host }}
+      register: kubeadm_output
+      ignore_errors: no
+
+    - name: Create .kube directory
+      file:
+        path: /home/{{ ansible_user }}/.kube
+        state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0755'
+
+    - name: Copy kube config file to user home directory
+      shell: cp /etc/kubernetes/admin.conf /home/{{ ansible_user }}/.kube/config
+      become: yes
+
+    - name: Change ownership of kube config file
+      shell: chown "{{ ansible_user }}":"{{ ansible_user }}" /home/{{ ansible_user }}/.kube/config
+      become: yes
+
+    - name: Verify kube config exists
+      stat:
+        path: /home/{{ ansible_user }}/.kube/config
+      register: kubeconfig_stat
+
+    - name: Output kube config status
+      debug:
+        msg: "Kube config exists: {{ kubeconfig_stat.stat.exists }}"
+
+    - name: Wait for the Kubernetes API to become available
+      shell: |
+        while ! curl --silent --fail --insecure https://localhost:6443/healthz; do
+          sleep 5
+        done
+      register: api_server_status
+      retries: 20
+      delay: 10
+      until: api_server_status is succeeded
+
+    - name: Get the kubeadm join command
+      shell: kubeadm token create --print-join-command
+      register: join_command
+
+    - name: Set join command fact
+      set_fact:
+        kubeadm_join_command: "{{ join_command.stdout }}"
+
+
+- hosts: workers
+  remote_user: k8suser
+  become: yes
+  gather_facts: yes
+  connection: ssh
+
+  tasks:
+    - name: Reset any existing Kubernetes setup
+      shell: kubeadm reset -f
+      ignore_errors: yes
+
+    - name: Join the cluster
+      shell: "{{ hostvars['master'].kubeadm_join_command }} --ignore-preflight-errors=all"
+      become: yes
+
+
+- hosts: masters
+  remote_user: k8suser
+  become: yes
+  gather_facts: yes
+  connection: ssh
+
+  tasks:
+    - name: Wait for all nodes to be ready
+      shell: |
+        total_nodes=$(kubectl get nodes | grep -v NAME | wc -l)
+        ready_nodes=$(kubectl get nodes | grep -E ' Ready ' | wc -l)
+        echo "Total nodes: $total_nodes"
+        echo "Ready nodes: $ready_nodes"
+        if [ "$ready_nodes" -eq "$total_nodes" ]; then
+          echo "All nodes are Ready"
+          exit 0
+        else
+          echo "Not all nodes are Ready"
+          exit 1
+        fi
+      retries: 20
+      delay: 10
+      register: all_nodes_ready
+      until: all_nodes_ready is succeeded
+
+    - name: Install Calico network plugin
+      shell: kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+      args:
+        chdir: /home/{{ ansible_user }}
+      become: yes
+      become_user: "{{ ansible_user }}"
+      environment:
+        KUBECONFIG: /home/{{ ansible_user }}/.kube/config
+      register: calico_install
+      retries: 3
+      delay: 5
+      until: calico_install is succeeded
+
+    # - name: Output Calico installation status
+    #   debug:
+    #     msg: "Calico installation: {{ calico_status.stdout }}"

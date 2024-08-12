@@ -1,0 +1,9 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: Create a new user without a password
+      user:
+        name: k8suser  
+        state: present
+        groups: sudo
+        append: yes
