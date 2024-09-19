@@ -52,5 +52,5 @@ A personal project that allows users to create and manage blockchain networks th
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/baas-project.git
-   cd baas-project
+   https://github.com/Parikalp-Bhardwaj/Blockchain_Service
+   cd Blockchain_Service
