@@ -1,0 +1,184 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.inputMain {
+  width: 100%;
+  background: #fff;
+}
+
+.addNewRow {
+  margin: 0px 0px 10px !important;
+  color: #008000 !important;
+  font-size: 14px !important;
+  padding: 6px 0 !important;
+  float: right !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  text-decoration: underline !important;
+}
+
+.removeRowInput {
+  border: none !important;
+  color: white !important;
+  font-weight: 500 !important;
+  background: #f70404 !important;
+  margin-top: 13px !important;
+  float: right !important;
+  font-size: 10px !important;
+}
+
+/* .statusSide {
+  height: 100vh;
+} */
+
+.newAddressItem {
+  padding: 20px 10px 1px;
+  background: #ffffff;
+  box-shadow: 0px 1px 3px #f8f8f8;
+  border: 1px solid #f2f2f2;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.newAddressItem label {
+  font-size: 13px;
+}
+
+.newAddressItem input {
+  height: 12px;
+  background: #f9fafb;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.mainContainer {
+  margin-top: 30px !important;
+}
+
+.blockCountWrap {
+  padding: 18px 0 0;
+  border-top: 1px solid #d2d2d2;
+  margin-top: 15px;
+}
+
+.blockCount {
+  border: 1px solid #d2d2d2;
+  border-radius: 4px;
+}
+
+.addressWrap {
+  height: 100%;
+  /* min-height: 400px; */
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.testConsoleWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-top: 10px;
+  padding-top: 30px;
+  border-top: 1px solid #d2d2d2;
+}
+
+.consoleForm input {
+  border: 1px solid #eee;
+  padding: 5px 8px;
+}
+
+.consoleForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.testConsoleWrap h3 {
+  font-weight: 500;
+}
+
+body {
+  background-color: #597688; /* Apply the background color to the entire body */
+}
+
+.mainProgressBar {
+  background: #fff;
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+  margin: 70px auto 0;
+  border-radius: 10px;
+}
+
+.mainProgressBar h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0px 0 40px;
+  color: #363636;
+}
+
+.mainProgressBar h3 {
+  font-weight: 500;
+  margin: 20px 0 0;
+  width: 100%;
+  background: #efefef;
+  padding: 6px 0;
+  border-radius: 4px;
+}
+
+.mainProgressBar h3 span {
+  color: #008000 !important;
+}
+
+.blockChainDone {
+  max-width: 500px;
+  margin: 20px auto 0px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+h3 {
+  color: #282c34;
+}
