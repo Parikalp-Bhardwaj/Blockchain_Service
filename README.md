@@ -10,15 +10,15 @@ A personal project that allows users to create and manage blockchain networks th
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-- [Usage](#usage)
-  - [API Endpoints](#api-endpoints)
 
 ## Overview
 
-- **Execution Layer**: Utilizes [Geth](https://geth.ethereum.org/) (Go implementation of Ethereum) for executing transactions.
-- **Consensus Layer**: Uses [Lighthouse](https://lighthouse-book.sigmaprime.io/) (Rust implementation) for consensus and validation.
-- **Infrastructure**: Deploys on a Kubernetes cluster created and managed with Ansible.
+- **Execution Layer**: Utilizes [Geth](https://geth.ethereum.org/) for transaction execution.
+- **Consensus Layer**: Employs [Lighthouse](https://lighthouse-book.sigmaprime.io/) for consensus and validation.
+- **Infrastructure**: Deploys on a Kubernetes cluster set up using Ansible scripts.
 - **Management**: Provides API endpoints to create, manage, and terminate blockchain networks.
+- **Note**: This is a personal project for educational purposes and is not intended for production use **for now**.
+
 
 ## Features
 
