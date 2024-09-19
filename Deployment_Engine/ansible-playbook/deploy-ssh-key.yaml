@@ -1,0 +1,39 @@
+---
+- name: Distribute SSH Key to All Servers
+  hosts: all
+  gather_facts: yes 
+  become: yes
+
+  vars:
+    ssh_key_path: "{{ ansible_env.HOME }}/.ssh/id_rsa.pub"
+    remote_user_home: "{{ ansible_env.HOME }}"
+
+  tasks:
+    - name: Ensure the '.ssh' directory exists
+      file:
+        path: "{{ remote_user_home }}/.ssh"
+        state: directory
+        mode: '0700'
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+
+    - name: Add SSH public key to the authorized_keys
+      authorized_key:
+        user: "{{ ansible_user }}"
+        state: present
+        key: "{{ lookup('file', ssh_key_path) }}"
+        path: "{{ remote_user_home }}/.ssh/authorized_keys"
+
+    - name: Disable password authentication (optional)
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication'
+        line: 'PasswordAuthentication no'
+        state: present
+      notify: restart ssh
+
+  handlers:
+    - name: restart ssh
+      service:
+        name: sshd
+        state: restarted

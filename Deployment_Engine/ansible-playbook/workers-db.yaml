@@ -1,13 +1,20 @@
----
 - name: Create user and transfer folder to all workers
-  hosts: workers
+  hosts: worker
   become: yes
   tasks:
-    - name: Set current working directory
+    - name: Set the current working directory and node folder dynamically
       set_fact:
-        current_dir: "{{ lookup('env', 'PWD') }}/blockchain-setup/nfs-share"
+        current_dir: "{{ lookup('env', 'PWD') }}/nfs-share/Node-{{ inventory_hostname | regex_replace('worker', '') }}"
 
-    - name: Copy folder to remote servers
+    - name: Create the target directory on the remote server
+      file:
+        path: /home/k8suser/
+        state: directory
+        owner: k8suser
+        group: k8suser
+        mode: '0755'
+
+    - name: Copy the node-specific folder to the respective worker nodes
       copy:
         src: "{{ current_dir }}"
         dest: /home/k8suser/

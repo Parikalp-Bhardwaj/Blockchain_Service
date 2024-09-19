@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "@tradle/ethereumjs-wallet": "^0.8.1",
+    "cli-progress": "^3.12.0",
+    "cors": "^2.8.5",
+    "cron": "^3.0.0",
+    "ethereumjs-wallet": "^0.6.5",
+    "node-cron": "^3.0.2",
+    "web3": "^1.10.3",
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "ethers": "^5.7.2",
+    "web3": "^1.10.3"
+  }
+}

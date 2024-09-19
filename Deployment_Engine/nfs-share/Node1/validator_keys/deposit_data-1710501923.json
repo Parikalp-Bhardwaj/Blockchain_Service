@@ -1,0 +1,13 @@
+[
+    {
+        "pubkey": "a92450825a2b1a630739d0eb1a36a3edf623b6bc79271cc83a2bdde453fc9b16ed34dfbbdc4c9c93cb9648e40809d220",
+        "withdrawal_credentials": "007749b9a3b188dbe7a78d9480ce7557ab0745324c7e7226c072854833bfdd6a",
+        "amount": 32000000000,
+        "signature": "968d700e5faecae579626d26995ddd0fb499021bef5f1ed814df50bf59ad0ba01e9388a51630f821789e85380f4d7bda17bb1d8eba8d2f0c4fb932ae0c170b7a7fcdd7b3a720938b13bd502d31a57dd59abbd74dab48b1ac5eb32a971ad08c40",
+        "deposit_message_root": "2953ec9da0590d2f948c55097760765f8fccd9c3012ab8bb4877588857acd365",
+        "deposit_data_root": "8d740b4e9a4bf257c58122785fb321b1e155d2ff8d642d6d272e78710c08d904",
+        "fork_version": "42424242",
+        "network_name": "minimal",
+        "deposit_cli_version": "2.6.0"
+    }
+]

@@ -38,7 +38,7 @@
 
     - name: Transfer a folder to the NFS share on the master node
       synchronize:
-        src: "{{ lookup('env', 'HOME') }}/ansible_model/cluster/nfs-share"
+        src: "{{ lookup('env', 'HOME') }}/nfs-share"
         dest: /srv/nfs/shared/
         recursive: yes
         delete: no
