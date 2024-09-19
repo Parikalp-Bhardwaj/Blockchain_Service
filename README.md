@@ -12,9 +12,6 @@ A personal project that allows users to create and manage blockchain networks th
   - [Installation](#installation)
 - [Usage](#usage)
   - [API Endpoints](#api-endpoints)
-- [Project Structure](#project-structure)
-- [License](#license)
-- [Contact](#contact)
 
 ## Overview
 
@@ -25,10 +22,9 @@ A personal project that allows users to create and manage blockchain networks th
 
 ## Features
 
-- **Easy Deployment**: Spin up new blockchain networks with a single API call.
-- **Scalable Architecture**: Kubernetes ensures the system can handle increasing loads.
-- **Automated Setup**: Ansible scripts automate the provisioning of infrastructure.
-- **Comprehensive Management**: APIs handle all aspects of blockchain lifecycle management.
+- **Automated Deployment**: Use Ansible to create a Kubernetes cluster effortlessly.
+- **API Control**: Manage your blockchain networks via simple API calls.
+- **Customizable Setup**: Modify the configurations to suit your personal needs.
 
 ## Architecture
 
@@ -52,5 +48,5 @@ A personal project that allows users to create and manage blockchain networks th
 1. **Clone the Repository**
 
    ```bash
-   https://github.com/Parikalp-Bhardwaj/Blockchain_Service
+   git clone https://github.com/Parikalp-Bhardwaj/Blockchain_Service
    cd Blockchain_Service
