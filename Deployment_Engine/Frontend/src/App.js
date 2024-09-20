@@ -1,7 +1,7 @@
 
 import React,{useState} from "react"
 import './App.css';
-import Index from './components/Index';
+// import Index from './components/Index';
 import Config from './components/Config';
 import Validator from './components/Validator';
 // import { Route, BrowserRouter, Switch,Routes  } from 'react-router-dom';

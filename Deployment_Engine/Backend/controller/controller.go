@@ -93,6 +93,10 @@ func Router(privateKeys []string, kubeconfigPath string) *gin.Engine {
 		getNodeStatus(ctx, nodeStatus, nil)
 	})
 
+	r.POST("/api/create-cluster", func(ctx *gin.Context) {
+		ansibleconfig.Runscript(ctx.Writer, ctx.Request)
+	})
+
 	return r
 
 	config := cors.DefaultConfig()

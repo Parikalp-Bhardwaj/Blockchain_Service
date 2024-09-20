@@ -8,6 +8,7 @@ const ServerConfig = () => {
   const [isDisabledButton, setDisabledButton] = useState(true)
 
 
+
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
     const updatedHosts = [...hosts];
@@ -38,7 +39,7 @@ const ServerConfig = () => {
       });
 
       if (response.ok) {
-        setDisabledButton(true)
+        setDisabledButton(false)
         alert('Inventory saved successfully.');
       } else {
         alert('Failed to save inventory.');
@@ -49,8 +50,28 @@ const ServerConfig = () => {
     }
   };
 
-  const createCluster = () =>{
-    console.log("--------------")
+  const createCluster = async() =>{
+    try {
+      const response = await fetch("/api/create-cluster", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.text(); 
+      if (response.ok) {
+        console.log("Cluster setup success:", data);
+        alert("Cluster created successfully! Check console for details.");
+        setDisabledButton(true)
+      } else {
+        console.error("Cluster setup failed:", data);
+        alert("Failed to create the cluster. See console for details.");
+      }
+    } catch (error) {
+      console.error("Error while creating cluster:", error);
+      alert("Error while setting up the cluster. See console for details.");
+    }
   }
 
   return (
@@ -166,11 +187,13 @@ const ServerConfig = () => {
         <Button variant="contained" color="success" type="submit" style={{ margin: 8 }}>
           Save Inventory
         </Button>
-        <Button variant="outlined" color="success" type="submit" disabled={isDisabledButton}
+        
+        
+      </form>
+      <Button variant="outlined" color="success" type="submit" disabled={isDisabledButton}
         style={{ margin: 8, backgroundColor: '#d52649', color: "#fff" }} onClick={createCluster}>
           Create Cluster
         </Button>
-      </form>
       </Paper>
     </Container>
   );

@@ -45,6 +45,15 @@ install-all: backend-deps-install frontend-deps-install
 reinstall-all: backend-deps-reinstall frontend-deps-reinstall
 	@echo "Reinstalled all dependencies."
 
+backend-run:
+	@echo "Running Go backend server..."
+	cd $(BACKEND_DIR) && go run .
+
+frontend-run:
+	@echo "Running React frontend server..."
+	cd $(FRONTEND_DIR) && npm start
+
+
 # Help message
 help:
 	@echo "Usage:"

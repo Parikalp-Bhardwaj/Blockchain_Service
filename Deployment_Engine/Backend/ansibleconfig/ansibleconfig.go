@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 
@@ -37,7 +38,6 @@ func SaveInventory(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-
 	workingDir, err := os.Getwd()
 	if err != nil {
 		http.Error(w, "Failed to get current working directory", http.StatusInternalServerError)
@@ -48,7 +48,6 @@ func SaveInventory(w http.ResponseWriter, r *http.Request) {
 
 	filePath := filepath.Join(parentDir, "hosts.ini")
 
-	
 	err = writeToFile(filePath, inventoryData)
 	if err != nil {
 		http.Error(w, "Failed to write inventory to file", http.StatusInternalServerError)
@@ -80,7 +79,6 @@ func formatAnsibleInventory(hosts []model.Host) string {
 		inventoryBuilder.WriteString("\n")
 	}
 
-
 	inventoryBuilder.WriteString("[all:vars]\n")
 	inventoryBuilder.WriteString("ansible_ssh_common_args='-o StrictHostKeyChecking=no'\n")
 	inventoryBuilder.WriteString("ansible_become=yes\n")
@@ -106,4 +104,24 @@ func writeToFile(filename, data string) error {
 
 	fmt.Println("Successfully wrote data to file:", filename)
 	return nil
+}
+
+func Runscript(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Only POST method is allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	scriptPath := "../setup-cluster.sh"
+
+	cmd := exec.Command("/bin/bash", scriptPath)
+
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		http.Error(w, fmt.Sprintf("Failed to execute script: %s", err), http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	w.Write(output)
 }
