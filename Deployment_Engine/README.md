@@ -33,3 +33,38 @@ This project aims to simplify the process of deploying and managing blockchain n
 └── README.md         # Project documentation
 
 
+## Makefile Commands
+
+The `Makefile` includes several commands to simplify project setup and management.
+
+### Installation Commands
+Install All Dependencies
+
+Installs both backend and frontend dependencies.
+
+```bash
+make install-all
+```
+
+### Clean All Dependencies
+Deletes both backend and frontend dependencies and removes the `hosts.ini` file if it exists.
+
+```bash
+make clean-all
+```
+
+### Running Servers
+
+Run Backend Server
+
+```bash
+make backend-run
+```
+
+### Run Frontend Server
+```bash 
+make frontend-run
+```
+
+
+![Alt text](inventory-data.png)
