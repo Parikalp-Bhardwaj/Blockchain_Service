@@ -6,14 +6,12 @@ A personal project that provides a platform to create, manage, and monitor block
 
 - [Introduction](#introduction)
 - [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
 - [ServerConfig Component](#serverconfig-component)
   - [Features](#features)
   - [How It Works](#how-it-works)
   - [Usage](#usage)
-- [Makefile Commands](#makefile-commands)
-- [API Endpoints](#api-endpoints)
-- [Getting Started](#getting-started)
-  - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
 - [Contact](#contact)
@@ -33,11 +31,11 @@ This project aims to simplify the process of deploying and managing blockchain n
 └── README.md         # Project documentation
 ```
 
-## Makefile Commands
+# Getting Started
 
 The `Makefile` includes several commands to simplify project setup and management.
 
-### Installation Commands
+## Installation 
 Install All Dependencies
 
 Installs both backend and frontend dependencies.
