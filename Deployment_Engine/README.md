@@ -124,7 +124,8 @@ Ansible is a popular automation tool used for configuration management, applicat
 - **Create Cluster**: (Button) Executes Ansible playbooks to configure and deploy the cluster using the saved inventory, automating the setup of master and worker nodes. This step is only enabled after saving the inventory.
 
 
-### Blockchain Cluster Setup and Deployment
+# **Blockchain Cluster Setup and Deployment**
+
 
 This guide walks through the steps of setting up a cluster of nodes, configuring them using an Ansible inventory, and deploying a blockchain on the cluster using `genesis.json` and `config.yaml`.
 
