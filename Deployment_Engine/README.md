@@ -27,8 +27,10 @@ This project aims to simplify the process of deploying and managing blockchain n
 ├── Backend/          # Go backend server code
 ├── Frontend/         # React frontend application
 ├── hosts.ini         # Ansible inventory file (auto-generated)
-├── Makefile          # Makefile with predefined commands
-└── README.md         # Project documentation
+├── ansible-playbook/  # Ansible playbooks for creating and managing the cluster
+└── nfs-share/         # NFS shared directory for common files across nodes
+├── Makefile           # Makefile with predefined commands
+└── README.md          # Project documentation
 ```
 
 # Getting Started
