@@ -14,6 +14,7 @@ A personal project that provides a platform to create, manage, and monitor block
   - [Usage](#usage)
 - [Usage](#usage)
 - [Blockchain Cluster Setup and Deployment](#blockchain-cluster-setup-and-deployment)
+- [CreateNetwork API](#createnetwork-api)
 
 
 ## Introduction
@@ -159,3 +160,46 @@ Usage: This file needs to be distributed to all nodes in the cluster so that the
 3. Start the Blockchain on each node using the configurations specified in the `config.yaml` file.
 
 
+![Alt text](blockchain-details.png)
+
+## CreateNetwork API
+
+The `createnetwork` API is designed to create and initialize a blockchain network across a set of nodes (typically part of a previously configured cluster). It requires several important parameters related to blockchain configuration, which dictate the structure and behavior of the blockchain.
+
+### Required Parameters
+
+1. **Chain ID**
+
+   - **Description**: A unique identifier for the blockchain network. The chain ID differentiates one blockchain from another, preventing cross-chain transactions and ensuring that the nodes remain within the same network.
+   - **Example**: `1234`
+
+2. **Gas Limit**
+
+   - **Description**: The maximum amount of gas (computational effort) that can be used per block. This value controls the size of the blocks and limits how many transactions or smart contracts can be included in a single block.
+   - **Example**: `2100000`
+
+3. **Seconds Per Slot**
+
+   - **Description**: Defines how much time each slot in the blockchain will last. This is typically used in Proof of Stake (PoS) or Proof of Authority (PoA) networks to determine the duration of each block time or epoch.
+   - **Example**: `15` seconds
+
+4. **Slots Per Epoch**
+
+   - **Description**: Specifies the number of slots that make up one epoch in the blockchain. An epoch represents a longer time period that groups together several blocks (slots). For example, an epoch might consist of 32 slots.
+   - **Example**: `64` slots
+
+5. **Wallet Account Addresses and Balances**
+
+   - **Description**: A list of wallet accounts (addresses) that will be pre-funded with an initial balance in the `genesis.json`. These accounts will hold the starting balances for the blockchain and can be used to initiate transactions or deploy smart contracts.
+   - **Example**:
+
+     ```json
+     {
+       "0x1234567890abcdef1234567890abcdef12345678": "1000000000000000000",
+       "0xabcdef1234567890abcdef1234567890abcdef12": "5000000000000000000"
+     }
+     ```
+
+### Usage Example
+
+When calling the `createnetwork` API, you would include these parameters in your request body. Below is an example of how to structure your JSON payload:
