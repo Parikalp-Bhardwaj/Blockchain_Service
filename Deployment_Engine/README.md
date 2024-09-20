@@ -13,8 +13,8 @@ A personal project that provides a platform to create, manage, and monitor block
   - [How It Works](#how-it-works)
   - [Usage](#usage)
 - [Usage](#usage)
-- [License](#license)
-- [Contact](#contact)
+- [Blockchain Cluster Setup and Deployment](#blockchain-cluster-setup-and-deployment)
+
 
 ## Introduction
 
@@ -117,11 +117,42 @@ Ansible is a popular automation tool used for configuration management, applicat
 
 ## Usage
 
-### Importing the Component
-
-
 ![Alt text](inventory-data.png)
 
-- Save Inventory: (Button) Captures and saves the server configuration as an Ansible-compatible inventory file (hosts.ini) on the backend, defining which servers Ansible will manage.
+- **Save Inventory**: (Button) Captures and saves the server configuration as an Ansible-compatible inventory file (hosts.ini) on the backend, defining which servers Ansible will manage.
 
-- Create Cluster: (Button) Executes Ansible playbooks to configure and deploy the cluster using the saved inventory, automating the setup of master and worker nodes. This step is only enabled after saving the inventory.
+- **Create Cluster**: (Button) Executes Ansible playbooks to configure and deploy the cluster using the saved inventory, automating the setup of master and worker nodes. This step is only enabled after saving the inventory.
+
+
+### Blockchain Cluster Setup and Deployment
+
+This guide walks through the steps of setting up a cluster of nodes, configuring them using an Ansible inventory, and deploying a blockchain on the cluster using `genesis.json` and `config.yaml`.
+
+
+1. **genesis.json:**
+- Purpose: Defines the initial state of the blockchain, including account balances, validators, and other network parameters. It is essential for initializing the blockchain on all nodes.
+- What it contains:
+  - Initial Account Balances: Predefined balances for certain accounts.
+  - Validators: List of validators (if using a Proof of Stake blockchain).
+  - **Network ID and Chain ID**: Unique identifiers for the blockchain network.
+  - **Block Time and Consensus Rules**: Specifies how blocks are validated and added to the chain.
+
+
+Usage: This file needs to be distributed to all nodes in the cluster so that they can start the blockchain with the same genesis block.
+
+2. **`config.yaml`**:
+- **Purpose**: Defines network configurations and operational parameters for the blockchain nodes.
+- What it contains:
+  - **Node Configuration**: Information about the node, such as its role (validator or regular node).
+  - **Networking**: Defines how the nodes communicate, including ports and peer discovery.
+  - **Consensus Algorithm Settings**: Configurations for how consensus will be reached (e.g., PoW, PoS).
+  - **Logging and Performance Tuning**: Options for logging, memory usage, and other performance settings.
+  - **Usage**: Each node in the cluster uses config.yaml to understand its role in the network and how to operate within the blockchain.
+
+**Steps to Deploy the Blockchain**:
+
+1. Distribute `genesis.json` and `config.yaml` to all nodes in the cluster.
+2. Initialize each node with the `genesis.json` file.
+3. Start the Blockchain on each node using the configurations specified in the `config.yaml` file.
+
+

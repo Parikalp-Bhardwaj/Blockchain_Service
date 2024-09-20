@@ -51,27 +51,6 @@ LinearProgressWithLabel.propTypes = {
 
 
 
-// export const ConfirmDialog = () => {
-//   return (
-//     <Dialog open={true} maxWidth="sm" fullWidth>
-//       <DialogTitle>Confirm the action</DialogTitle>
-//       <Box position="absolute" top={0} right={0}>
-//         <IconButton>
-//           <Close />
-//         </IconButton>
-//       </Box>
-//       <DialogContent>
-//         <Typography>Blockchain</Typography>
-//       </DialogContent>
-//       <DialogActions>
-//         <Button color="secondary" variant="contained">
-//           Confirm
-//         </Button>
-//       </DialogActions>
-//     </Dialog>
-//   );
-// };
-
 
 
 const BLOCK_BATCH = 1;
@@ -198,49 +177,14 @@ const Index = () => {
           console.log("throughput--> ", data*3)
         }
 
-        // const unicodeDecimalNumber = parseInt(hexadecimalString, 16);
-        // const unicodeCharacter = String.fromCodePoint(unicodeDecimalNumber);
-        // console.log("Unicode Character:", unicodeCharacter);
-
-
-        // } else {
-        //   setBlockInfo({ error: "Block not found" });
-        // }
+        
 
       } catch (error) {
         console.log("Error fetching data:", error)
       }
     }
 
-    // const getValidator = async () => {
-    //   try {
-    //     const response = await fetch(
-    //       `http://192.168.253.108:3500/eth/v1/beacon/states/head/validators?status=active_ongoing`
-    //     );
-    //     if (!response.ok) {
-    //       throw new Error("Network response was not ok");
-    //     }
-    //     if (response.status === 200) {
-    //       const data = await response.json();
-
-    //       console.log("num of Validator ", data["data"].length)
-    //       setGetValidator(data["data"].length)
-
-
-    //       // const unicodeDecimalNumber = parseInt(hexadecimalString, 16);
-    //       // const unicodeCharacter = String.fromCodePoint(unicodeDecimalNumber);
-    //       // console.log("Unicode Character:", unicodeCharacter);
-
-
-    //     } else {
-    //       setBlockInfo({ error: "Block not found" });
-    //     }
-
-    //   } catch (error) {
-    //     console.log("Error fetching data:", error)
-    //   }
-    // }
-
+    
     fetchData();
     // getValidator()
     getThroughput()
@@ -722,8 +666,6 @@ const Index = () => {
         </div>
 
       ) : (
-
-
 
 
         <div className="container mainContainer">
