@@ -181,12 +181,12 @@ The `createnetwork` API is designed to create and initialize a blockchain networ
 3. **Seconds Per Slot**
 
    - **Description**: Defines how much time each slot in the blockchain will last. This is typically used in Proof of Stake (PoS) or Proof of Authority (PoA) networks to determine the duration of each block time or epoch.
-   - **Example**: `15` seconds
+   - **Example**: `2` seconds
 
 4. **Slots Per Epoch**
 
    - **Description**: Specifies the number of slots that make up one epoch in the blockchain. An epoch represents a longer time period that groups together several blocks (slots). For example, an epoch might consist of 32 slots.
-   - **Example**: `64` slots
+   - **Example**: `4` slots
 
 5. **Wallet Account Addresses and Balances**
 
