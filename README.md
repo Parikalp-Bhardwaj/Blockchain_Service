@@ -1,4 +1,4 @@
-# Blockchain as a Service (BaaS)
+# Blockchain Launcher Engine
 
 A personal project that allows users to create and manage blockchain networks through simple API calls. The system leverages modern technologies like Kubernetes, Ansible, Geth, and Lighthouse to provide scalable and automated blockchain services.
 
